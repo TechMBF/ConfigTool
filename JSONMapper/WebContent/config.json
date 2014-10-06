@@ -1,0 +1,1942 @@
+{
+
+    "configurations": [
+        {
+            "name": "r3-gd-prod-prod",
+            "proxies": [
+                {
+                    "name": "default.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/ProxyEndpoint/HTTPProxyConnection/BasePath",
+                            "value": "/accountDetailsForPartners/v1"
+                        },
+                        {
+                            "xpath": "/ProxyEndpoint/HTTPProxyConnection/VirtualHost",
+                            "value": "SSL_VH"
+                        }
+                    ]
+                }
+            ],
+            "policies": [
+                {
+                    "name": "AllowedCommonHeaders.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/AssignMessage/AssignVariable[Name='allowedAcceptHeaders']/Value",
+                            "value": "application/json,application/xml"
+                        },
+                        {
+                            "xpath": "/AssignMessage/AssignVariable[Name='defaultAcceptHeader']/Value",
+                            "value": "application/json"
+                        }
+                    ]
+                },
+                {
+                    "name": "AssignMindProxyRequestParams.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/AssignMessage/Add/Headers/Header[@name='Authorization']",
+                            "value": "Basic dGNvdHNfbWluZDo1TGhtN3dLdGUtRzI2OFFwQlZBZUdSLWY5S1doOV9ocQ=="
+                        }
+                    ]
+                },
+                {
+                    "name": "MINDProxyServiceCalloutForMSISDN.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/ServiceCallout/HTTPTargetConnection/URL",
+                            "value": "http://ewr1.api-prod.priv.bf.sl.attcompute.com:8181/mobile/profile/subid/{requestPath.myId}"
+                        }
+                    ]
+                },
+                {
+                    "name": "ValidateAccountDetailsAPIScopePolicy.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/OAuthV2/Scope",
+                            "value": "PARTNER_AD"
+                        }
+                    ]
+                },
+                {
+                    "name": "SetInvalidScopeExceptionPolicy.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/AssignMessage/AssignVariable[Name='Message_Text']/Value",
+                            "value": "AccountDetailsAPI is not allowed for this application"
+                        }
+                    ]
+                },
+                {
+                    "name": "SpikeArrestSB.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/SpikeArrest/Rate",
+                            "value": "30ps"
+                        }
+                    ]
+                },
+                {
+                    "name": "SpikeArrest.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/SpikeArrest/Rate",
+                            "value": "30ps"
+                        }
+                    ]
+                },
+                {
+                    "name": "BuildSBRequest.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/AssignMessage/Set/Headers/Header[@name='Authorization']",
+                            "value": "Basic YmxhY2tmbGFnOkJ2WWVacFVUM3o="
+                        },
+                        {
+                            "xpath": "/AssignMessage/Set/Headers/Header[@name='X-CSI-TimeToLive']",
+                            "value": "10000"
+                        }
+                    ]
+                },
+                {
+                    "name": "AssignGlobalVariables.xml",
+                    "tokens": [
+                        {
+                             "xpath": "/AssignMessage/AssignVariable[Name='sendQuotaEmailAllowed']/Value",
+                             "value": "false"
+                        }
+                    ]
+                },
+                {
+                	"name": "AddDeprecatedWarningHeader.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/AssignMessage/Set/Headers/Header[@name='Warning']",
+                            "value": "This API has been deprecated and may not be supported in the future. It is recommended to use a newer version of the API."
+                        }
+                    ]
+                }
+            ],
+            "targets": [
+                {
+                    "name": "default.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/TargetEndpoint/HTTPTargetConnection/URL",
+                            "value": "https://csi-e-ext.cingular.com:1443/{dynamicTargetSuffix}"
+                        },
+                        {
+                            "xpath": "/TargetEndpoint/HTTPTargetConnection/SSLInfo/KeyStore",
+                            "value": "CSIKeyStore"
+                        },
+                        {
+                            "xpath": "/TargetEndpoint/HTTPTargetConnection/SSLInfo/KeyAlias",
+                            "value": "csiprodkeyalias"
+                        },
+                        {
+                            "xpath": "/TargetEndpoint/HTTPTargetConnection/SSLInfo/Enabled",
+                            "value": "true"
+                        },
+                        {
+                            "xpath": "/TargetEndpoint/HTTPTargetConnection/SSLInfo/ClientAuthEnabled",
+                            "value": "true"
+                        },
+                        {
+                            "xpath": "/TargetEndpoint/HTTPTargetConnection/Properties/Property[@name='io.timeout.millis']",
+                            "value": "120000"
+                        }
+                    ]
+                }
+            ]
+        },
+		{
+            "name": "r3-prod-busprod",
+            "proxies": [
+                {
+                    "name": "default.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/ProxyEndpoint/HTTPProxyConnection/BasePath",
+                            "value": "/accountDetailsForPartners/v1"
+                        },
+                        {
+                            "xpath": "/ProxyEndpoint/HTTPProxyConnection/VirtualHost",
+                            "value": "SSL_VH"
+                        }
+                    ]
+                }
+            ],
+            "policies": [
+                {
+                    "name": "AllowedCommonHeaders.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/AssignMessage/AssignVariable[Name='allowedAcceptHeaders']/Value",
+                            "value": "application/json,application/xml"
+                        },
+                        {
+                            "xpath": "/AssignMessage/AssignVariable[Name='defaultAcceptHeader']/Value",
+                            "value": "application/json"
+                        }
+                    ]
+                },
+                {
+                    "name": "AssignMindProxyRequestParams.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/AssignMessage/Add/Headers/Header[@name='Authorization']",
+                            "value": "Basic dGNvdHNfbWluZDo1TGhtN3dLdGUtRzI2OFFwQlZBZUdSLWY5S1doOV9ocQ=="
+                        }
+                    ]
+                },
+                {
+                    "name": "MINDProxyServiceCalloutForMSISDN.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/ServiceCallout/HTTPTargetConnection/URL",
+                            "value": "http://api-busprod.priv.bf.sl.attcompute.com:8181/mobile/profile/subid/{requestPath.myId}"
+                        }
+                    ]
+                },
+                {
+                    "name": "ValidateAccountDetailsAPIScopePolicy.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/OAuthV2/Scope",
+                            "value": "PARTNER_AD"
+                        }
+                    ]
+                },
+                {
+                    "name": "SetInvalidScopeExceptionPolicy.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/AssignMessage/AssignVariable[Name='Message_Text']/Value",
+                            "value": "AccountDetailsAPI is not allowed for this application"
+                        }
+                    ]
+                },
+                {
+                    "name": "SpikeArrestSB.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/SpikeArrest/Rate",
+                            "value": "30ps"
+                        }
+                    ]
+                },
+                {
+                    "name": "SpikeArrest.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/SpikeArrest/Rate",
+                            "value": "30ps"
+                        }
+                    ]
+                },
+                {
+                    "name": "BuildSBRequest.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/AssignMessage/Set/Headers/Header[@name='Authorization']",
+                            "value": "Basic YmxhY2tmbGFnOkJ2WWVacFVUM3o="
+                        },
+                        {
+                            "xpath": "/AssignMessage/Set/Headers/Header[@name='X-CSI-TimeToLive']",
+                            "value": "10000"
+                        }
+                    ]
+                },
+                {
+                    "name": "AssignGlobalVariables.xml",
+                    "tokens": [
+                        {
+                             "xpath": "/AssignMessage/AssignVariable[Name='sendQuotaEmailAllowed']/Value",
+                             "value": "false"
+                        }
+                    ]
+                },
+                {
+                	"name": "AddDeprecatedWarningHeader.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/AssignMessage/Set/Headers/Header[@name='Warning']",
+                            "value": "This API has been deprecated and may not be supported in the future. It is recommended to use a newer version of the API."
+                        }
+                    ]
+                }
+            ],
+            "targets": [
+                {
+                    "name": "default.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/TargetEndpoint/HTTPTargetConnection/URL",
+                            "value": "https://csi-tst-ext6.att.com:1643/{dynamicTargetSuffix}"
+                        },
+                        {
+                            "xpath": "/TargetEndpoint/HTTPTargetConnection/SSLInfo/KeyStore",
+                            "value": "KeyStore"
+                        },
+                        {
+                            "xpath": "/TargetEndpoint/HTTPTargetConnection/SSLInfo/KeyAlias",
+                            "value": "csit08keyalias"
+                        },
+                        {
+                            "xpath": "/TargetEndpoint/HTTPTargetConnection/SSLInfo/Enabled",
+                            "value": "true"
+                        },
+                        {
+                            "xpath": "/TargetEndpoint/HTTPTargetConnection/SSLInfo/ClientAuthEnabled",
+                            "value": "true"
+                        },
+                        {
+                            "xpath": "/TargetEndpoint/HTTPTargetConnection/Properties/Property[@name='io.timeout.millis']",
+                            "value": "120000"
+                        }
+                    ]
+                }
+            ]
+        },
+		{
+            "name": "r3-prod-preprod",
+            "proxies": [
+                {
+                    "name": "default.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/ProxyEndpoint/HTTPProxyConnection/BasePath",
+                            "value": "/accountDetailsForPartners/v1"
+                        },
+                        {
+                            "xpath": "/ProxyEndpoint/HTTPProxyConnection/VirtualHost",
+                            "value": "SSL_VH"
+                        }
+                    ]
+                }
+            ],
+            "policies": [
+                {
+                    "name": "AllowedCommonHeaders.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/AssignMessage/AssignVariable[Name='allowedAcceptHeaders']/Value",
+                            "value": "application/json,application/xml"
+                        },
+                        {
+                            "xpath": "/AssignMessage/AssignVariable[Name='defaultAcceptHeader']/Value",
+                            "value": "application/json"
+                        }
+                    ]
+                },
+                {
+                    "name": "AssignMindProxyRequestParams.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/AssignMessage/Add/Headers/Header[@name='Authorization']",
+                            "value": "Basic dGNvdHNfbWluZDo1TGhtN3dLdGUtRzI2OFFwQlZBZUdSLWY5S1doOV9ocQ=="
+                        }
+                    ]
+                },
+                {
+                    "name": "MINDProxyServiceCalloutForMSISDN.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/ServiceCallout/HTTPTargetConnection/URL",
+                            "value": "http://dfw3.api-prod.priv.bf.sl.attcompute.com:8183/mobile/profile/subid/{requestPath.myId}"
+                        } 
+                    ]
+                },
+                {
+                    "name": "ValidateAccountDetailsAPIScopePolicy.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/OAuthV2/Scope",
+                            "value": "PARTNER_AD"
+                        }
+                    ]
+                },
+                {
+                    "name": "SetInvalidScopeExceptionPolicy.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/AssignMessage/AssignVariable[Name='Message_Text']/Value",
+                            "value": "AccountDetailsAPI is not allowed for this application"
+                        }
+                    ]
+                },
+                {
+                    "name": "SpikeArrestSB.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/SpikeArrest/Rate",
+                            "value": "30ps"
+                        }
+                    ]
+                },
+                {
+                    "name": "SpikeArrest.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/SpikeArrest/Rate",
+                            "value": "30ps"
+                        }
+                    ]
+                },
+                {
+                    "name": "BuildSBRequest.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/AssignMessage/Set/Headers/Header[@name='Authorization']",
+                            "value": "Basic YmxhY2tmbGFnOmJsYWNrZmxhZzEwMTE="
+                        },
+                        {
+                            "xpath": "/AssignMessage/Set/Headers/Header[@name='X-CSI-TimeToLive']",
+                            "value": "10000"
+                        }
+                    ]
+                },
+                {
+                    "name": "AssignGlobalVariables.xml",
+                    "tokens": [
+                        {
+                             "xpath": "/AssignMessage/AssignVariable[Name='sendQuotaEmailAllowed']/Value",
+                             "value": "false"
+                        }
+                    ]
+                },
+                {
+                	"name": "AddDeprecatedWarningHeader.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/AssignMessage/Set/Headers/Header[@name='Warning']",
+                            "value": "This API has been deprecated and may not be supported in the future. It is recommended to use a newer version of the API."
+                        }
+                    ]
+                }
+            ],
+            "targets": [
+                {
+                    "name": "default.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/TargetEndpoint/HTTPTargetConnection/URL",
+                            "value": "https://csi-tst-ext6.att.com:1443/{dynamicTargetSuffix}"
+                        },
+                        {
+                            "xpath": "/TargetEndpoint/HTTPTargetConnection/SSLInfo/KeyStore",
+                            "value": "CSILab"
+                        },
+                        {
+                            "xpath": "/TargetEndpoint/HTTPTargetConnection/SSLInfo/KeyAlias",
+                            "value": "CSILab"
+                        },
+                        {
+                            "xpath": "/TargetEndpoint/HTTPTargetConnection/SSLInfo/Enabled",
+                            "value": "true"
+                        },
+                        {
+                            "xpath": "/TargetEndpoint/HTTPTargetConnection/SSLInfo/ClientAuthEnabled",
+                            "value": "true"
+                        },
+                        {
+                            "xpath": "/TargetEndpoint/HTTPTargetConnection/Properties/Property[@name='io.timeout.millis']",
+                            "value": "120000"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "r3-sql1-prod-prod-sql1-default",
+            "proxies": [
+                {
+                    "name": "default.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/ProxyEndpoint/HTTPProxyConnection/BasePath",
+                            "value": "/accountDetailsForPartners/v1"
+                        },
+                        {
+                            "xpath": "/ProxyEndpoint/HTTPProxyConnection/VirtualHost",
+                            "value": "SSL_VH"
+                        }
+                    ]
+                }
+            ],
+            "policies": [
+                {
+                    "name": "AllowedCommonHeaders.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/AssignMessage/AssignVariable[Name='allowedAcceptHeaders']/Value",
+                            "value": "application/json,application/xml"
+                        },
+                        {
+                            "xpath": "/AssignMessage/AssignVariable[Name='defaultAcceptHeader']/Value",
+                            "value": "application/json"
+                        }
+                    ]
+                },
+                {
+                    "name": "AssignMindProxyRequestParams.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/AssignMessage/Add/Headers/Header[@name='Authorization']",
+                            "value": "Basic dGNvdHNfbWluZDo1TGhtN3dLdGUtRzI2OFFwQlZBZUdSLWY5S1doOV9ocQ=="
+                        }
+                    ]
+                },
+                {
+                    "name": "MINDProxyServiceCalloutForMSISDN.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/ServiceCallout/HTTPTargetConnection/URL",
+                            "value": "http://sql1.api-prod.priv.bf.sl.attcompute.com:8182/mobile/profile/subid/{requestPath.myId}"
+                        }
+                    ]
+                },
+                {
+                    "name": "ValidateAccountDetailsAPIScopePolicy.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/OAuthV2/Scope",
+                            "value": "PARTNER_AD"
+                        }
+                    ]
+                },
+                {
+                    "name": "SetInvalidScopeExceptionPolicy.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/AssignMessage/AssignVariable[Name='Message_Text']/Value",
+                            "value": "AccountDetailsAPI is not allowed for this application"
+                        }
+                    ]
+                },
+                {
+                    "name": "SpikeArrestSB.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/SpikeArrest/Rate",
+                            "value": "30ps"
+                        }
+                    ]
+                },
+                {
+                    "name": "SpikeArrest.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/SpikeArrest/Rate",
+                            "value": "30ps"
+                        }
+                    ]
+                },
+                {
+                    "name": "BuildSBRequest.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/AssignMessage/Set/Headers/Header[@name='Authorization']",
+                            "value": "Basic YmxhY2tmbGFnOkJ2WWVacFVUM3o="
+                        },
+                        {
+                            "xpath": "/AssignMessage/Set/Headers/Header[@name='X-CSI-TimeToLive']",
+                            "value": "10000"
+                        }
+                    ]
+                },
+                {
+                    "name": "AssignGlobalVariables.xml",
+                    "tokens": [
+                        {
+                             "xpath": "/AssignMessage/AssignVariable[Name='sendQuotaEmailAllowed']/Value",
+                             "value": "false"
+                        }
+                    ]
+                },
+                {
+                	"name": "AddDeprecatedWarningHeader.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/AssignMessage/Set/Headers/Header[@name='Warning']",
+                            "value": "This API has been deprecated and may not be supported in the future. It is recommended to use a newer version of the API."
+                        }
+                    ]
+                }
+            ],
+            "targets": [
+                {
+                    "name": "default.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/TargetEndpoint/HTTPTargetConnection/URL",
+                            "value": "https://csi-e-ext.cingular.com:1443/{dynamicTargetSuffix}"
+                        },
+                        {
+                            "xpath": "/TargetEndpoint/HTTPTargetConnection/SSLInfo/KeyStore",
+                            "value": "CSIKeyStore"
+                        },
+                        {
+                            "xpath": "/TargetEndpoint/HTTPTargetConnection/SSLInfo/KeyAlias",
+                            "value": "csiprodkeyalias"
+                        },
+                        {
+                            "xpath": "/TargetEndpoint/HTTPTargetConnection/SSLInfo/Enabled",
+                            "value": "true"
+                        },
+                        {
+                            "xpath": "/TargetEndpoint/HTTPTargetConnection/SSLInfo/ClientAuthEnabled",
+                            "value": "true"
+                        },
+                        {
+                            "xpath": "/TargetEndpoint/HTTPTargetConnection/Properties/Property[@name='io.timeout.millis']",
+                            "value": "120000"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "r3-mars-uat-uat",
+            "proxies": [
+                {
+                    "name": "default.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/ProxyEndpoint/HTTPProxyConnection/BasePath",
+                            "value": "/accountDetailsForPartners/v1"
+                        },
+                        {
+                            "xpath": "/ProxyEndpoint/HTTPProxyConnection/VirtualHost",
+                            "value": "SSL_VH"
+                        }
+                    ]
+                }
+            ],
+            "policies": [
+                {
+                    "name": "AllowedCommonHeaders.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/AssignMessage/AssignVariable[Name='allowedAcceptHeaders']/Value",
+                            "value": "application/json,application/xml"
+                        },
+                        {
+                            "xpath": "/AssignMessage/AssignVariable[Name='defaultAcceptHeader']/Value",
+                            "value": "application/json"
+                        }
+                    ]
+                },
+                {
+                    "name": "AssignMindProxyRequestParams.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/AssignMessage/Add/Headers/Header[@name='Authorization']",
+                            "value": "Basic dGNvdHNfbWluZDo1TGhtN3dLdGUtRzI2OFFwQlZBZUdSLWY5S1doOV9ocQ=="
+                        }
+                    ]
+                },
+                {
+                    "name": "MINDProxyServiceCalloutForMSISDN.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/ServiceCallout/HTTPTargetConnection/URL",
+                            "value": "http://api-uat.priv.mars.bf.sl.attcompute.com:8181/mobile/profile/subid/{requestPath.myId}"
+                        }
+                    ]
+                },
+                {
+                    "name": "ValidateAccountDetailsAPIScopePolicy.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/OAuthV2/Scope",
+                            "value": "PARTNER_AD"
+                        }
+                    ]
+                },
+                {
+                    "name": "SetInvalidScopeExceptionPolicy.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/AssignMessage/AssignVariable[Name='Message_Text']/Value",
+                            "value": "AccountDetailsAPI is not allowed for this application"
+                        }
+                    ]
+                },
+                {
+                    "name": "SpikeArrestSB.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/SpikeArrest/Rate",
+                            "value": "30ps"
+                        }
+                    ]
+                },
+                {
+                    "name": "SpikeArrest.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/SpikeArrest/Rate",
+                            "value": "30ps"
+                        }
+                    ]
+                },
+                {
+                    "name": "BuildSBRequest.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/AssignMessage/Set/Headers/Header[@name='Authorization']",
+                            "value": "Basic YmxhY2tmbGFnOmJsYWNrZmxhZzEwMTE="
+                        },
+                        {
+                            "xpath": "/AssignMessage/Set/Headers/Header[@name='X-CSI-TimeToLive']",
+                            "value": "10000"
+                        }
+                    ]
+                },
+                {
+                    "name": "AssignGlobalVariables.xml",
+                    "tokens": [
+                        {
+                             "xpath": "/AssignMessage/AssignVariable[Name='sendQuotaEmailAllowed']/Value",
+                             "value": "false"
+                        }
+                    ]
+                },
+                {
+                	"name": "AddDeprecatedWarningHeader.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/AssignMessage/Set/Headers/Header[@name='Warning']",
+                            "value": "This API has been deprecated and may not be supported in the future. It is recommended to use a newer version of the API."
+                        }
+                    ]
+                }
+            ],
+            "targets": [
+                {
+                    "name": "default.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/TargetEndpoint/HTTPTargetConnection/URL",
+                            "value": "https://csi-tst-ext6.att.com:1543/{dynamicTargetSuffix}"
+                        },
+                        {
+                            "xpath": "/TargetEndpoint/HTTPTargetConnection/SSLInfo/KeyStore",
+                            "value": "CSILab"
+                        },
+                        {
+                            "xpath": "/TargetEndpoint/HTTPTargetConnection/SSLInfo/KeyAlias",
+                            "value": "CSILab"
+                        },
+                        {
+                            "xpath": "/TargetEndpoint/HTTPTargetConnection/SSLInfo/Enabled",
+                            "value": "true"
+                        },
+                        {
+                            "xpath": "/TargetEndpoint/HTTPTargetConnection/SSLInfo/ClientAuthEnabled",
+                            "value": "true"
+                        },
+                        {
+                            "xpath": "/TargetEndpoint/HTTPTargetConnection/Properties/Property[@name='io.timeout.millis']",
+                            "value": "120000"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "r3-sql1-uat-uat-sql1-default",
+            "proxies": [
+                {
+                    "name": "default.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/ProxyEndpoint/HTTPProxyConnection/BasePath",
+                            "value": "/accountDetailsForPartners/v1"
+                        },
+                        {
+                            "xpath": "/ProxyEndpoint/HTTPProxyConnection/VirtualHost",
+                            "value": "SSL_VH"
+                        }
+                    ]
+                }
+            ],
+            "policies": [
+                {
+                    "name": "AllowedCommonHeaders.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/AssignMessage/AssignVariable[Name='allowedAcceptHeaders']/Value",
+                            "value": "application/json,application/xml"
+                        },
+                        {
+                            "xpath": "/AssignMessage/AssignVariable[Name='defaultAcceptHeader']/Value",
+                            "value": "application/json"
+                        }
+                    ]
+                },
+                {
+                    "name": "AssignMindProxyRequestParams.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/AssignMessage/Add/Headers/Header[@name='Authorization']",
+                            "value": "Basic dGNvdHNfbWluZDo1TGhtN3dLdGUtRzI2OFFwQlZBZUdSLWY5S1doOV9ocQ=="
+                        }
+                    ]
+                },
+                {
+                    "name": "MINDProxyServiceCalloutForMSISDN.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/ServiceCallout/HTTPTargetConnection/URL",
+                            "value": "http://sql1.api-uat.priv.bf.sl.attcompute.com:8182/mobile/profile/subid/{requestPath.myId}"
+                        }
+                    ]
+                },
+                {
+                    "name": "ValidateAccountDetailsAPIScopePolicy.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/OAuthV2/Scope",
+                            "value": "PARTNER_AD"
+                        }
+                    ]
+                },
+                {
+                    "name": "SetInvalidScopeExceptionPolicy.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/AssignMessage/AssignVariable[Name='Message_Text']/Value",
+                            "value": "AccountDetailsAPI is not allowed for this application"
+                        }
+                    ]
+                },
+                {
+                    "name": "SpikeArrestSB.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/SpikeArrest/Rate",
+                            "value": "30ps"
+                        }
+                    ]
+                },
+                {
+                    "name": "SpikeArrest.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/SpikeArrest/Rate",
+                            "value": "30ps"
+                        }
+                    ]
+                },
+                {
+                    "name": "BuildSBRequest.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/AssignMessage/Set/Headers/Header[@name='Authorization']",
+                            "value": "Basic YmxhY2tmbGFnOmJsYWNrZmxhZzEwMTE="
+                        },
+                        {
+                            "xpath": "/AssignMessage/Set/Headers/Header[@name='X-CSI-TimeToLive']",
+                            "value": "10000"
+                        }
+                    ]
+                },
+                {
+                    "name": "AssignGlobalVariables.xml",
+                    "tokens": [
+                        {
+                             "xpath": "/AssignMessage/AssignVariable[Name='sendQuotaEmailAllowed']/Value",
+                             "value": "false"
+                        }
+                    ]
+                },
+                {
+                	"name": "AddDeprecatedWarningHeader.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/AssignMessage/Set/Headers/Header[@name='Warning']",
+                            "value": "This API has been deprecated and may not be supported in the future. It is recommended to use a newer version of the API."
+                        }
+                    ]
+                }                
+            ],
+            "targets": [
+                {
+                    "name": "default.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/TargetEndpoint/HTTPTargetConnection/URL",
+                            "value": "https://csi-tst-ext6.att.com:1443/{dynamicTargetSuffix}"
+                        },
+                        {
+                            "xpath": "/TargetEndpoint/HTTPTargetConnection/SSLInfo/KeyStore",
+                            "value": "CSIKeyStore"
+                        },
+                        {
+                            "xpath": "/TargetEndpoint/HTTPTargetConnection/SSLInfo/KeyAlias",
+                            "value": "csidevkeyalias"
+                        },
+                        {
+                            "xpath": "/TargetEndpoint/HTTPTargetConnection/SSLInfo/Enabled",
+                            "value": "true"
+                        },
+                        {
+                            "xpath": "/TargetEndpoint/HTTPTargetConnection/SSLInfo/ClientAuthEnabled",
+                            "value": "true"
+                        },
+                        {
+                            "xpath": "/TargetEndpoint/HTTPTargetConnection/Properties/Property[@name='io.timeout.millis']",
+                            "value": "120000"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "r3-mars-stage-uat",
+            "proxies": [
+                {
+                    "name": "default.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/ProxyEndpoint/HTTPProxyConnection/BasePath",
+                            "value": "/accountDetailsForPartners/v1"
+                        },
+                        {
+                            "xpath": "/ProxyEndpoint/HTTPProxyConnection/VirtualHost",
+                            "value": "SSL_VH"
+                        }
+                    ]
+                }
+            ],
+            "policies": [
+                {
+                    "name": "AllowedCommonHeaders.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/AssignMessage/AssignVariable[Name='allowedAcceptHeaders']/Value",
+                            "value": "application/json,application/xml"
+                        },
+                        {
+                            "xpath": "/AssignMessage/AssignVariable[Name='defaultAcceptHeader']/Value",
+                            "value": "application/json"
+                        }
+                    ]
+                },
+                {
+                    "name": "AssignMindProxyRequestParams.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/AssignMessage/Add/Headers/Header[@name='Authorization']",
+                            "value": "Basic dGNvdHNfbWluZDo1TGhtN3dLdGUtRzI2OFFwQlZBZUdSLWY5S1doOV9ocQ=="
+                        }
+                    ]
+                },
+                {
+                    "name": "MINDProxyServiceCalloutForMSISDN.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/ServiceCallout/HTTPTargetConnection/URL",
+                            "value": "http://api-stage.priv.mars.bf.sl.attcompute.com:8181/mobile/profile/subid/{requestPath.myId}"
+                        }
+                    ]
+                },
+                {
+                    "name": "ValidateAccountDetailsAPIScopePolicy.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/OAuthV2/Scope",
+                            "value": "PARTNER_AD"
+                        }
+                    ]
+                },
+                {
+                    "name": "SetInvalidScopeExceptionPolicy.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/AssignMessage/AssignVariable[Name='Message_Text']/Value",
+                            "value": "AccountDetailsAPI is not allowed for this application"
+                        }
+                    ]
+                },
+                {
+                    "name": "SpikeArrestSB.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/SpikeArrest/Rate",
+                            "value": "30ps"
+                        }
+                    ]
+                },
+                {
+                    "name": "SpikeArrest.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/SpikeArrest/Rate",
+                            "value": "30ps"
+                        }
+                    ]
+                },
+                {
+                    "name": "BuildSBRequest.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/AssignMessage/Set/Headers/Header[@name='Authorization']",
+                            "value": "Basic YmxhY2tmbGFnOmJsYWNrZmxhZzEwMTE="
+                        },
+                        {
+                            "xpath": "/AssignMessage/Set/Headers/Header[@name='X-CSI-TimeToLive']",
+                            "value": "10000"
+                        }
+                    ]
+                },
+                {
+                    "name": "AssignGlobalVariables.xml",
+                    "tokens": [
+                        {
+                             "xpath": "/AssignMessage/AssignVariable[Name='sendQuotaEmailAllowed']/Value",
+                             "value": "false"
+                        }
+                    ]
+                },
+                {
+                	"name": "AddDeprecatedWarningHeader.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/AssignMessage/Set/Headers/Header[@name='Warning']",
+                            "value": "This API has been deprecated and may not be supported in the future. It is recommended to use a newer version of the API."
+                        }
+                    ]
+                }
+            ],
+            "targets": [
+                {
+                    "name": "default.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/TargetEndpoint/HTTPTargetConnection/URL",
+                            "value": "https://csi-tst-ext6.att.com:1643/{dynamicTargetSuffix}"
+                        },
+                        {
+                            "xpath": "/TargetEndpoint/HTTPTargetConnection/SSLInfo/KeyStore",
+                            "value": "KeyStore"
+                        },
+                        {
+                            "xpath": "/TargetEndpoint/HTTPTargetConnection/SSLInfo/KeyAlias",
+                            "value": "csidevkeyalias"
+                        },
+                        {
+                            "xpath": "/TargetEndpoint/HTTPTargetConnection/SSLInfo/Enabled",
+                            "value": "true"
+                        },
+                        {
+                            "xpath": "/TargetEndpoint/HTTPTargetConnection/SSLInfo/ClientAuthEnabled",
+                            "value": "true"
+                        },
+                        {
+                            "xpath": "/TargetEndpoint/HTTPTargetConnection/Properties/Property[@name='io.timeout.millis']",
+                            "value": "120000"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "r3-mars-perf-perf",
+            "proxies": [
+                {
+                    "name": "default.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/ProxyEndpoint/HTTPProxyConnection/BasePath",
+                            "value": "/accountDetailsForPartners/v1"
+                        },
+                        {
+                            "xpath": "/ProxyEndpoint/HTTPProxyConnection/VirtualHost",
+                            "value": "SSL_VH"
+                        }
+                    ]
+                }
+            ],
+            "policies": [
+                {
+                    "name": "AllowedCommonHeaders.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/AssignMessage/AssignVariable[Name='allowedAcceptHeaders']/Value",
+                            "value": "application/json,application/xml"
+                        },
+                        {
+                            "xpath": "/AssignMessage/AssignVariable[Name='defaultAcceptHeader']/Value",
+                            "value": "application/json"
+                        }
+                    ]
+                },
+                {
+                    "name": "AssignMindProxyRequestParams.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/AssignMessage/Add/Headers/Header[@name='Authorization']",
+                            "value": "Basic dGNvdHNfbWluZDo1TGhtN3dLdGUtRzI2OFFwQlZBZUdSLWY5S1doOV9ocQ=="
+                        }
+                    ]
+                },
+                {
+                    "name": "MINDProxyServiceCalloutForMSISDN.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/ServiceCallout/HTTPTargetConnection/URL",
+                            "value": "http://api-perf.priv.mars.bf.sl.attcompute.com:8181/mobile/profile/subid/{requestPath.myId}"
+                        }
+                    ]
+                },
+                {
+                    "name": "ValidateAccountDetailsAPIScopePolicy.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/OAuthV2/Scope",
+                            "value": "PARTNER_AD"
+                        }
+                    ]
+                },
+                {
+                    "name": "SetInvalidScopeExceptionPolicy.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/AssignMessage/AssignVariable[Name='Message_Text']/Value",
+                            "value": "AccountDetailsAPI is not allowed for this application"
+                        }
+                    ]
+                },
+                {
+                    "name": "SpikeArrestSB.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/SpikeArrest/Rate",
+                            "value": "300ps"
+                        }
+                    ]
+                },
+                {
+                    "name": "SpikeArrest.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/SpikeArrest/Rate",
+                            "value": "300ps"
+                        }
+                    ]
+                },
+                {
+                    "name": "BuildSBRequest.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/AssignMessage/Set/Headers/Header[@name='Authorization']",
+                            "value": "Basic YmxhY2tmbGFnOmJsYWNrZmxhZzEwMTE="
+                        },
+                        {
+                            "xpath": "/AssignMessage/Set/Headers/Header[@name='X-CSI-TimeToLive']",
+                            "value": "10000"
+                        }
+                    ]
+                },
+                {
+                    "name": "AssignGlobalVariables.xml",
+                    "tokens": [
+                        {
+                             "xpath": "/AssignMessage/AssignVariable[Name='sendQuotaEmailAllowed']/Value",
+                             "value": "false"
+                        }
+                    ]
+                },
+                {
+                	"name": "AddDeprecatedWarningHeader.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/AssignMessage/Set/Headers/Header[@name='Warning']",
+                            "value": "This API has been deprecated and may not be supported in the future. It is recommended to use a newer version of the API."
+                        }
+                    ]
+                }
+            ],
+            "targets": [
+                {
+                    "name": "default.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/TargetEndpoint/HTTPTargetConnection/URL",
+                            "value": "https://csi-tst-ext6.att.com:1543/{dynamicTargetSuffix}"
+                        },
+                        {
+                            "xpath": "/TargetEndpoint/HTTPTargetConnection/SSLInfo/KeyStore",
+                            "value": "KeyStore"
+                        },
+                        {
+                            "xpath": "/TargetEndpoint/HTTPTargetConnection/SSLInfo/KeyAlias",
+                            "value": "csit08keyalias"
+                        },
+                        {
+                            "xpath": "/TargetEndpoint/HTTPTargetConnection/SSLInfo/Enabled",
+                            "value": "true"
+                        },
+                        {
+                            "xpath": "/TargetEndpoint/HTTPTargetConnection/SSLInfo/ClientAuthEnabled",
+                            "value": "true"
+                        },
+                        {
+                            "xpath": "/TargetEndpoint/HTTPTargetConnection/Properties/Property[@name='io.timeout.millis']",
+                            "value": "120000"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "r3-mars-sit-sit",
+            "proxies": [
+                {
+                    "name": "default.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/ProxyEndpoint/HTTPProxyConnection/BasePath",
+                            "value": "/accountDetailsForPartners/v1"
+                        },
+                        {
+                            "xpath": "/ProxyEndpoint/HTTPProxyConnection/VirtualHost",
+                            "value": "SSL_VH"
+                        }
+                    ]
+                }
+            ],
+            "policies": [
+                {
+                    "name": "AllowedCommonHeaders.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/AssignMessage/AssignVariable[Name='allowedAcceptHeaders']/Value",
+                            "value": "application/json,application/xml"
+                        },
+                        {
+                            "xpath": "/AssignMessage/AssignVariable[Name='defaultAcceptHeader']/Value",
+                            "value": "application/json"
+                        }
+                    ]
+                },
+                {
+                    "name": "AssignMindProxyRequestParams.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/AssignMessage/Add/Headers/Header[@name='Authorization']",
+                            "value": "Basic dGNvdHNfbWluZDo1TGhtN3dLdGUtRzI2OFFwQlZBZUdSLWY5S1doOV9ocQ=="
+                        }
+                    ]
+                },
+                {
+                    "name": "MINDProxyServiceCalloutForMSISDN.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/ServiceCallout/HTTPTargetConnection/URL",
+                            "value": "http://api-sit.priv.mars.bf.sl.attcompute.com:8181/mobile/profile/subid/{requestPath.myId}"
+                        }
+                    ]
+                },
+                {
+                    "name": "ValidateAccountDetailsAPIScopePolicy.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/OAuthV2/Scope",
+                            "value": "PARTNER_AD"
+                        }
+                    ]
+                },
+                {
+                    "name": "SetInvalidScopeExceptionPolicy.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/AssignMessage/AssignVariable[Name='Message_Text']/Value",
+                            "value": "AccountDetailsAPI is not allowed for this application"
+                        }
+                    ]
+                },
+                {
+                    "name": "SpikeArrestSB.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/SpikeArrest/Rate",
+                            "value": "30ps"
+                        }
+                    ]
+                },
+                {
+                    "name": "SpikeArrest.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/SpikeArrest/Rate",
+                            "value": "30ps"
+                        }
+                    ]
+                },
+                {
+                    "name": "BuildSBRequest.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/AssignMessage/Set/Headers/Header[@name='Authorization']",
+                            "value": "Basic YmxhY2tmbGFnOmJsYWNrZmxhZzEwMTE="
+                        },
+                        {
+                            "xpath": "/AssignMessage/Set/Headers/Header[@name='X-CSI-TimeToLive']",
+                            "value": "10000"
+                        }
+                    ]
+                },
+                {
+                    "name": "AssignGlobalVariables.xml",
+                    "tokens": [
+                        {
+                             "xpath": "/AssignMessage/AssignVariable[Name='sendQuotaEmailAllowed']/Value",
+                             "value": "false"
+                        }
+                    ]
+                },
+                {
+                	"name": "AddDeprecatedWarningHeader.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/AssignMessage/Set/Headers/Header[@name='Warning']",
+                            "value": "This API has been deprecated and may not be supported in the future. It is recommended to use a newer version of the API."
+                        }
+                    ]
+                }
+            ],
+            "targets": [
+                {
+                    "name": "default.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/TargetEndpoint/HTTPTargetConnection/URL",
+                            "value": "https://csi-tst-ext6.att.com:1543/{dynamicTargetSuffix}"
+                        },
+                        {
+                            "xpath": "/TargetEndpoint/HTTPTargetConnection/SSLInfo/KeyStore",
+                            "value": "KeyStore"
+                        },
+                        {
+                            "xpath": "/TargetEndpoint/HTTPTargetConnection/SSLInfo/KeyAlias",
+                            "value": "csidevkeyalias"
+                        },
+                        {
+                            "xpath": "/TargetEndpoint/HTTPTargetConnection/SSLInfo/Enabled",
+                            "value": "true"
+                        },
+                        {
+                            "xpath": "/TargetEndpoint/HTTPTargetConnection/SSLInfo/ClientAuthEnabled",
+                            "value": "true"
+                        },
+                        {
+                            "xpath": "/TargetEndpoint/HTTPTargetConnection/Properties/Property[@name='io.timeout.millis']",
+                            "value": "120000"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "r3-mars-devel-dev1",
+            "proxies": [
+                {
+                    "name": "default.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/ProxyEndpoint/HTTPProxyConnection/BasePath",
+                            "value": "/accountDetailsForPartners/v1"
+                        },
+                        {
+                            "xpath": "/ProxyEndpoint/HTTPProxyConnection/VirtualHost",
+                            "value": "SSL_VH"
+                        }
+                    ]
+                }
+            ],
+            "policies": [
+                {
+                    "name": "AllowedCommonHeaders.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/AssignMessage/AssignVariable[Name='allowedAcceptHeaders']/Value",
+                            "value": "application/json,application/xml"
+                        },
+                        {
+                            "xpath": "/AssignMessage/AssignVariable[Name='defaultAcceptHeader']/Value",
+                            "value": "application/json"
+                        }
+                    ]
+                },
+                {
+                    "name": "AssignMindProxyRequestParams.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/AssignMessage/Add/Headers/Header[@name='Authorization']",
+                            "value": "Basic dGNvdHNfbWluZDo1TGhtN3dLdGUtRzI2OFFwQlZBZUdSLWY5S1doOV9ocQ=="
+                        }
+                    ]
+                },
+                {
+                    "name": "MINDProxyServiceCalloutForMSISDN.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/ServiceCallout/HTTPTargetConnection/URL",
+                            "value": "http://api-dev.priv.mars.bf.sl.attcompute.com:8181/mobile/profile/subid/{requestPath.myId}"
+                        }
+                    ]
+                },
+                {
+                    "name": "ValidateAccountDetailsAPIScopePolicy.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/OAuthV2/Scope",
+                            "value": "PARTNER_AD"
+                        }
+                    ]
+                },
+                {
+                    "name": "SetInvalidScopeExceptionPolicy.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/AssignMessage/AssignVariable[Name='Message_Text']/Value",
+                            "value": "AccountDetailsAPI is not allowed for this application"
+                        }
+                    ]
+                },
+                {
+                    "name": "SpikeArrestSB.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/SpikeArrest/Rate",
+                            "value": "30ps"
+                        }
+                    ]
+                },
+                {
+                    "name": "SpikeArrest.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/SpikeArrest/Rate",
+                            "value": "30ps"
+                        }
+                    ]
+                },
+                {
+                    "name": "BuildSBRequest.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/AssignMessage/Set/Headers/Header[@name='Authorization']",
+                            "value": "Basic YmxhY2tmbGFnOmJsYWNrZmxhZzEwMTE="
+                        },
+                        {
+                            "xpath": "/AssignMessage/Set/Headers/Header[@name='X-CSI-TimeToLive']",
+                            "value": "10000"
+                        }
+                    ]
+                },
+                {
+                    "name": "AssignGlobalVariables.xml",
+                    "tokens": [
+                        {
+                             "xpath": "/AssignMessage/AssignVariable[Name='sendQuotaEmailAllowed']/Value",
+                             "value": "false"
+                        }
+                    ]
+                },
+                {
+                	"name": "AddDeprecatedWarningHeader.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/AssignMessage/Set/Headers/Header[@name='Warning']",
+                            "value": "This API has been deprecated and may not be supported in the future. It is recommended to use a newer version of the API."
+                        }
+                    ]
+                }
+            ],
+            "targets": [
+                {
+                    "name": "default.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/TargetEndpoint/HTTPTargetConnection/URL",
+                            "value": "https://csi-tst-ext6.att.com:1543/{dynamicTargetSuffix}"
+                        },
+                        {
+                            "xpath": "/TargetEndpoint/HTTPTargetConnection/SSLInfo/KeyStore",
+                            "value": "KeyStore"
+                        },
+                        {
+                            "xpath": "/TargetEndpoint/HTTPTargetConnection/SSLInfo/KeyAlias",
+                            "value": "csidevkeyalias"
+                        },
+                        {
+                            "xpath": "/TargetEndpoint/HTTPTargetConnection/SSLInfo/Enabled",
+                            "value": "true"
+                        },
+                        {
+                            "xpath": "/TargetEndpoint/HTTPTargetConnection/SSLInfo/ClientAuthEnabled",
+                            "value": "true"
+                        },
+                        {
+                            "xpath": "/TargetEndpoint/HTTPTargetConnection/Properties/Property[@name='io.timeout.millis']",
+                            "value": "120000"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "accenture-perf1-ewr1",
+            "proxies": [
+                {
+                    "name": "default.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/ProxyEndpoint/HTTPProxyConnection/BasePath",
+                            "value": "/accountDetailsForPartners/v1"
+                        },
+                        {
+                            "xpath": "/ProxyEndpoint/HTTPProxyConnection/VirtualHost",
+                            "value": "SSL_VH"
+                        }
+                    ]
+                }
+            ],
+            "policies": [
+                {
+                    "name": "AllowedCommonHeaders.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/AssignMessage/AssignVariable[Name='allowedAcceptHeaders']/Value",
+                            "value": "application/json,application/xml"
+                        },
+                        {
+                            "xpath": "/AssignMessage/AssignVariable[Name='defaultAcceptHeader']/Value",
+                            "value": "application/json"
+                        }
+                    ]
+                },
+                {
+                    "name": "AssignMindProxyRequestParams.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/AssignMessage/Add/Headers/Header[@name='Authorization']",
+                            "value": "Basic dGNvdHNfbWluZDo1TGhtN3dLdGUtRzI2OFFwQlZBZUdSLWY5S1doOV9ocQ=="
+                        }
+                    ]
+                },
+                {
+                    "name": "MINDProxyServiceCalloutForMSISDN.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/ServiceCallout/HTTPTargetConnection/URL",
+                            "value": "http://api-perf2.priv.mars.bf.sl.attcompute.com:8181/mobile/profile/subid/{requestPath.myId}"
+                        }
+                    ]
+                },
+                {
+                    "name": "ValidateAccountDetailsAPIScopePolicy.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/OAuthV2/Scope",
+                            "value": "PARTNER_AD"
+                        }
+                    ]
+                },
+                {
+                    "name": "SetInvalidScopeExceptionPolicy.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/AssignMessage/AssignVariable[Name='Message_Text']/Value",
+                            "value": "AccountDetailsAPI is not allowed for this application"
+                        }
+                    ]
+                },
+                {
+                    "name": "SpikeArrestSB.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/SpikeArrest/Rate",
+                            "value": "300ps"
+                        }
+                    ]
+                },
+                {
+                    "name": "SpikeArrest.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/SpikeArrest/Rate",
+                            "value": "300ps"
+                        }
+                    ]
+                },
+                {
+                    "name": "BuildSBRequest.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/AssignMessage/Set/Headers/Header[@name='Authorization']",
+                            "value": "Basic YmxhY2tmbGFnOmJsYWNrZmxhZzEwMTE="
+                        },
+                        {
+                            "xpath": "/AssignMessage/Set/Headers/Header[@name='X-CSI-TimeToLive']",
+                            "value": "10000"
+                        }
+                    ]
+                },
+                {
+                    "name": "AssignGlobalVariables.xml",
+                    "tokens": [
+                        {
+                             "xpath": "/AssignMessage/AssignVariable[Name='sendQuotaEmailAllowed']/Value",
+                             "value": "false"
+                        }
+                    ]
+                },
+                {
+                	"name": "AddDeprecatedWarningHeader.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/AssignMessage/Set/Headers/Header[@name='Warning']",
+                            "value": "This API has been deprecated and may not be supported in the future. It is recommended to use a newer version of the API."
+                        }
+                    ]
+                }
+            ],
+            "targets": [
+                {
+                    "name": "default.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/TargetEndpoint/HTTPTargetConnection/URL",
+                            "value": "https://csi-tst-ext6.att.com:1543/{dynamicTargetSuffix}"
+                        },
+                        {
+                            "xpath": "/TargetEndpoint/HTTPTargetConnection/SSLInfo/KeyStore",
+                            "value": "KeyStore"
+                        },
+                        {
+                            "xpath": "/TargetEndpoint/HTTPTargetConnection/SSLInfo/KeyAlias",
+                            "value": "csit08keyalias"
+                        },
+                        {
+                            "xpath": "/TargetEndpoint/HTTPTargetConnection/SSLInfo/Enabled",
+                            "value": "true"
+                        },
+                        {
+                            "xpath": "/TargetEndpoint/HTTPTargetConnection/SSLInfo/ClientAuthEnabled",
+                            "value": "true"
+                        },
+                        {
+                            "xpath": "/TargetEndpoint/HTTPTargetConnection/Properties/Property[@name='io.timeout.millis']",
+                            "value": "120000"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "accenture-sit1-ewr1",
+            "proxies": [
+                {
+                    "name": "default.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/ProxyEndpoint/HTTPProxyConnection/BasePath",
+                            "value": "/accountDetailsForPartners/v1"
+                        },
+                        {
+                            "xpath": "/ProxyEndpoint/HTTPProxyConnection/VirtualHost",
+                            "value": "SSL_VH"
+                        }
+                    ]
+                }
+            ],
+            "policies": [
+                {
+                    "name": "AllowedCommonHeaders.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/AssignMessage/AssignVariable[Name='allowedAcceptHeaders']/Value",
+                            "value": "application/json,application/xml"
+                        },
+                        {
+                            "xpath": "/AssignMessage/AssignVariable[Name='defaultAcceptHeader']/Value",
+                            "value": "application/json"
+                        }
+                    ]
+                },
+                {
+                    "name": "AssignMindProxyRequestParams.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/AssignMessage/Add/Headers/Header[@name='Authorization']",
+                            "value": "Basic dGNvdHNfbWluZDo1TGhtN3dLdGUtRzI2OFFwQlZBZUdSLWY5S1doOV9ocQ=="
+                        }
+                    ]
+                },
+                {
+                    "name": "MINDProxyServiceCalloutForMSISDN.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/ServiceCallout/HTTPTargetConnection/URL",
+                            "value": "http://api-sit2.priv.mars.bf.sl.attcompute.com:8181/mobile/profile/subid/{requestPath.myId}"
+                        }
+                    ]
+                },
+                {
+                    "name": "ValidateAccountDetailsAPIScopePolicy.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/OAuthV2/Scope",
+                            "value": "PARTNER_AD"
+                        }
+                    ]
+                },
+                {
+                    "name": "SetInvalidScopeExceptionPolicy.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/AssignMessage/AssignVariable[Name='Message_Text']/Value",
+                            "value": "AccountDetailsAPI is not allowed for this application"
+                        }
+                    ]
+                },
+                {
+                    "name": "SpikeArrestSB.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/SpikeArrest/Rate",
+                            "value": "30ps"
+                        }
+                    ]
+                },
+                {
+                    "name": "SpikeArrest.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/SpikeArrest/Rate",
+                            "value": "30ps"
+                        }
+                    ]
+                },
+                {
+                    "name": "BuildSBRequest.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/AssignMessage/Set/Headers/Header[@name='Authorization']",
+                            "value": "Basic YmxhY2tmbGFnOmJsYWNrZmxhZzEwMTE="
+                        },
+                        {
+                            "xpath": "/AssignMessage/Set/Headers/Header[@name='X-CSI-TimeToLive']",
+                            "value": "10000"
+                        }
+                    ]
+                },
+                {
+                    "name": "AssignGlobalVariables.xml",
+                    "tokens": [
+                        {
+                             "xpath": "/AssignMessage/AssignVariable[Name='sendQuotaEmailAllowed']/Value",
+                             "value": "false"
+                        }
+                    ]
+                },
+                {
+                	"name": "AddDeprecatedWarningHeader.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/AssignMessage/Set/Headers/Header[@name='Warning']",
+                            "value": "This API has been deprecated and may not be supported in the future. It is recommended to use a newer version of the API."
+                        }
+                    ]
+                }
+            ],
+            "targets": [
+                {
+                    "name": "default.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/TargetEndpoint/HTTPTargetConnection/URL",
+                            "value": "https://csi-tst-ext6.att.com:1543/{dynamicTargetSuffix}"
+                        },
+                        {
+                            "xpath": "/TargetEndpoint/HTTPTargetConnection/SSLInfo/KeyStore",
+                            "value": "KeyStore"
+                        },
+                        {
+                            "xpath": "/TargetEndpoint/HTTPTargetConnection/SSLInfo/KeyAlias",
+                            "value": "csidevkeyalias"
+                        },
+                        {
+                            "xpath": "/TargetEndpoint/HTTPTargetConnection/SSLInfo/Enabled",
+                            "value": "true"
+                        },
+                        {
+                            "xpath": "/TargetEndpoint/HTTPTargetConnection/SSLInfo/ClientAuthEnabled",
+                            "value": "true"
+                        },
+                        {
+                            "xpath": "/TargetEndpoint/HTTPTargetConnection/Properties/Property[@name='io.timeout.millis']",
+                            "value": "120000"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "accenture-dev1-ewr1",
+            "proxies": [
+                {
+                    "name": "default.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/ProxyEndpoint/HTTPProxyConnection/BasePath",
+                            "value": "/accountDetailsForPartners/v1"
+                        },
+                        {
+                            "xpath": "/ProxyEndpoint/HTTPProxyConnection/VirtualHost",
+                            "value": "SSL_VH"
+                        }
+                    ]
+                }
+            ],
+            "policies": [
+                {
+                    "name": "AllowedCommonHeaders.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/AssignMessage/AssignVariable[Name='allowedAcceptHeaders']/Value",
+                            "value": "application/json,application/xml"
+                        },
+                        {
+                            "xpath": "/AssignMessage/AssignVariable[Name='defaultAcceptHeader']/Value",
+                            "value": "application/json"
+                        }
+                    ]
+                },
+                {
+                    "name": "AssignMindProxyRequestParams.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/AssignMessage/Add/Headers/Header[@name='Authorization']",
+                            "value": "Basic dGNvdHNfbWluZDo1TGhtN3dLdGUtRzI2OFFwQlZBZUdSLWY5S1doOV9ocQ=="
+                        }
+                    ]
+                },
+                {
+                    "name": "MINDProxyServiceCalloutForMSISDN.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/ServiceCallout/HTTPTargetConnection/URL",
+                            "value": "http://api-dev2.priv.mars.bf.sl.attcompute.com:8181/mobile/profile/subid/{requestPath.myId}"
+                        }
+                    ]
+                },
+                {
+                    "name": "ValidateAccountDetailsAPIScopePolicy.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/OAuthV2/Scope",
+                            "value": "PARTNER_AD"
+                        }
+                    ]
+                },
+                {
+                    "name": "SetInvalidScopeExceptionPolicy.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/AssignMessage/AssignVariable[Name='Message_Text']/Value",
+                            "value": "AccountDetailsAPI is not allowed for this application"
+                        }
+                    ]
+                },
+                {
+                    "name": "SpikeArrestSB.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/SpikeArrest/Rate",
+                            "value": "30ps"
+                        }
+                    ]
+                },
+                {
+                    "name": "SpikeArrest.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/SpikeArrest/Rate",
+                            "value": "30ps"
+                        }
+                    ]
+                },
+                {
+                    "name": "BuildSBRequest.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/AssignMessage/Set/Headers/Header[@name='Authorization']",
+                            "value": "Basic YmxhY2tmbGFnOmJsYWNrZmxhZzEwMTE="
+                        },
+                        {
+                            "xpath": "/AssignMessage/Set/Headers/Header[@name='X-CSI-TimeToLive']",
+                            "value": "10000"
+                        }
+                    ]
+                },
+                {
+                    "name": "AssignGlobalVariables.xml",
+                    "tokens": [
+                        {
+                             "xpath": "/AssignMessage/AssignVariable[Name='sendQuotaEmailAllowed']/Value",
+                             "value": "false"
+                        }
+                    ]
+                },
+                {
+                	"name": "AddDeprecatedWarningHeader.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/AssignMessage/Set/Headers/Header[@name='Warning']",
+                            "value": "This API has been deprecated and may not be supported in the future. It is recommended to use a newer version of the API."
+                        }
+                    ]
+                }
+            ],
+            "targets": [
+                {
+                    "name": "default.xml",
+                    "tokens": [
+                        {
+                            "xpath": "/TargetEndpoint/HTTPTargetConnection/URL",
+                            "value": "https://csi-tst-ext6.att.com:1543/{dynamicTargetSuffix}"
+                        },
+                        {
+                            "xpath": "/TargetEndpoint/HTTPTargetConnection/SSLInfo/KeyStore",
+                            "value": "KeyStore"
+                        },
+                        {
+                            "xpath": "/TargetEndpoint/HTTPTargetConnection/SSLInfo/KeyAlias",
+                            "value": "csidevkeyalias"
+                        },
+                        {
+                            "xpath": "/TargetEndpoint/HTTPTargetConnection/SSLInfo/Enabled",
+                            "value": "true"
+                        },
+                        {
+                            "xpath": "/TargetEndpoint/HTTPTargetConnection/SSLInfo/ClientAuthEnabled",
+                            "value": "true"
+                        },
+                        {
+                            "xpath": "/TargetEndpoint/HTTPTargetConnection/Properties/Property[@name='io.timeout.millis']",
+                            "value": "120000"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

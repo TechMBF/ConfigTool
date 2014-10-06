@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="JSONMapper">
+        <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
+        <dependent-module archiveName="poi-ooxml-3.5-FINAL.jar" deploy-path="/WEB-INF/lib/" handle="module:/resource/poi-ooxml-3.5-FINAL/poi-ooxml-3.5-FINAL">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="jackson-all-1.9.0.jar" deploy-path="/WEB-INF/lib/" handle="module:/resource/jackson-all-1.9.0/jackson-all-1.9.0">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="xmlbeans-2.3.0.jar" deploy-path="/WEB-INF/lib/" handle="module:/resource/xmlbeans-2.3.0/xmlbeans-2.3.0">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="poi-ooxml-schemas-3.10-FINAL.jar" deploy-path="/WEB-INF/lib/" handle="module:/resource/poi-ooxml-schemas-3.10-FINAL/poi-ooxml-schemas-3.10-FINAL">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="dom4j-1.6.1.jar" deploy-path="/WEB-INF/lib/" handle="module:/resource/dom4j-1.6.1/dom4j-1.6.1">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="poi-3.9.jar" deploy-path="/WEB-INF/lib/" handle="module:/resource/poi-3.9/poi-3.9">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <property name="context-root" value="JSONMapper"/>
+        <property name="java-output-path" value="/JSONMapper/build/classes"/>
+    </wb-module>
+</project-modules>
